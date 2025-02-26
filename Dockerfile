@@ -4,11 +4,11 @@ ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
 ENV UV_PYTHON_DOWNLOADS=0
 
 WORKDIR /app
-# The line below doesn't work, but why?
+# NOTE: --no-install-package is needed for local package, see https://github.com/astral-sh/uv-docker-example/issues/45
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv sync --frozen --no-install-project --no-dev
+    uv sync --frozen --no-install-project --no-dev --no-install-package mypackage
 COPY pyproject.toml uv.lock main.py /app/
 COPY mypackage /app/mypackage
 RUN --mount=type=cache,target=/root/.cache/uv \
