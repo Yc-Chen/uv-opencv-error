@@ -4,9 +4,10 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.11"
 dependencies = [
-    # "mypackage",
-    "opencv-python>=4.11.0.86",
+    "mypackage",
+    "anotherpackage",
 ]
 
 [tool.uv.sources]
 mypackage = { path = "./mypackage/" }
+anotherpackage = { path = "./anotherpackage/" }

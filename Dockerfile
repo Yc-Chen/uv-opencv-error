@@ -8,9 +8,10 @@ WORKDIR /app
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv sync --frozen --no-install-project --no-dev --no-install-package mypackage
+    uv sync --frozen --no-install-project --no-dev --no-install-package mypackage --no-install-package anotherpackage
 COPY pyproject.toml uv.lock main.py /app/
 COPY mypackage /app/mypackage
+COPY anotherpackage /app/anotherpackage
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-dev
 
