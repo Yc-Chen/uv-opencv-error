@@ -5,7 +5,7 @@ description = "Add your description here"
 requires-python = ">=3.11"
 dependencies = [
     "mypackage",
-    "opencv-python>=4.11.0.86",
+    "opencv-python-headless>=4.11.0.86",
 ]
 
 [tool.uv.sources]
