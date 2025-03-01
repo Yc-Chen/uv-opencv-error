@@ -7,11 +7,10 @@ WORKDIR /app
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv sync --frozen --no-install-project --no-dev --no-install-package mypackage --no-install-package anotherpackage
+    uv sync --frozen --no-install-project --no-dev --no-install-package mypackage --no-install-package anotherpackage --no-install-package opencv-python
 COPY pyproject.toml uv.lock main.py /app/
 COPY mypackage /app/mypackage
 COPY anotherpackage /app/anotherpackage
-# The docker build works if pip is used to install opencv-python-headless, instead of uv
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-dev --no-install-package opencv-python && \
     uv pip install opencv-python-headless
